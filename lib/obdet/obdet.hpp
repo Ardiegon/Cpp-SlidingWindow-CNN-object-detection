@@ -82,5 +82,15 @@ public:
     cv::Mat* convoluteThrough(cv::Mat&);
 };
 
+class TemplateMatch{
+    cv::Mat *templ;
+    ImgSamples *samples;
+public:
+    TemplateMatch(ImgSamples*, cv::Mat*);
+    void normalizeTemplate();
+    double calcHistDifference();
+    cv::Mat findTemplate();
+};
+
 }
 #endif

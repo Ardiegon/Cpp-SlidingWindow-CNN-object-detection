@@ -10,4 +10,5 @@ add_library(
     obdet/SampleTemplate.cpp
     obdet/Sample.cpp
     obdet/ImgSamples.cpp
+    obdet/TemplateMatch.cpp
 )
