@@ -11,8 +11,10 @@ int main(){
     odt::SampleTemplate templ(&img, 100, 100 ,3);
     odt::ImgSamples swindow(templ);
     swindow.calculateFactors();
-    int how_many = swindow.generateSamples(2); 
+    int how_many = swindow.generateSamples(5); 
     cv::imshow("Lion", img);
+    cv::imshow("Sample1", swindow.get_samples()[0].showOnImage());
+    cv::imshow("Sample1", swindow.get_samples()[10000].showOnImage());
     cv::waitKey(0);
     return 0;
 }

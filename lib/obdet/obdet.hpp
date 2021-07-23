@@ -13,6 +13,8 @@ inline double linearSpaced(double, double, double, double);
 
 namespace odt{ // object detection
 
+enum class ShowType { RAW, NORMALIZED };
+
 class SampleTemplate{
     // Class that holds parameters for future samples.                               
 protected:
@@ -40,10 +42,11 @@ class Sample: private SampleTemplate{
 public:
     Sample();
     Sample(SampleTemplate&, int, int, double);
-    cv::Mat get_Mat(void);                          // Making Matrix from info
     int get_corx(void);                             
     int get_cory(void);
     double get_factor(void);
+    cv::Mat get_Mat(void);                          // Making Matrix from info
+    cv::Mat showOnImage(ShowType = ShowType::NORMALIZED);
 };
 
 class ImgSamples{
@@ -73,6 +76,8 @@ public:
     int generateSamples(int);
     void calculateFactors(void);
     double* get_factors(void);
+    Sample* get_samples(void);
+    SampleTemplate get_samplet(void);
 };
 
 class ConvLayer{
@@ -83,13 +88,13 @@ public:
 };
 
 class TemplateMatch{
-    cv::Mat *templ;
-    ImgSamples *samples;
+    ImgSamples *image;
+    cv::Mat templ;
 public:
-    TemplateMatch(ImgSamples*, cv::Mat*);
+    TemplateMatch(ImgSamples*, cv::Mat);
     void normalizeTemplate();
     double calcHistDifference();
-    cv::Mat findTemplate();
+    Sample findBestSample();
 };
 
 }

@@ -20,9 +20,7 @@ ImgSamples::~ImgSamples(){
 void ImgSamples::calculateFactors(){
     double a = static_cast<double>(samplet.get_accuracy());
     double min_factor = max(static_cast<double>(samplet.get_lenx())/static_cast<double>(samplet.get_mImage()->cols),static_cast<double>(samplet.get_leny())/static_cast<double>(samplet.get_mImage()->rows));
-    cout << "min_factor: " << min_factor << endl;
     for (int i = 0; i < a; i++){
-        cout<< i << " \n"; 
         factors[i] = linearSpaced(min_factor, max_factor, a, i);
     }
 }
@@ -65,4 +63,12 @@ int ImgSamples::generateSamples(int padding){
 
 double* ImgSamples::get_factors(){
     return factors;
+}
+
+Sample* ImgSamples::get_samples(){
+    return samples;
+}
+
+SampleTemplate ImgSamples::get_samplet(){
+    return samplet;
 }
