@@ -1,6 +1,5 @@
 #include <iostream>
 #include <opencv2/opencv.hpp>
-#include "point/point.hpp"
 #include "obdet/obdet.hpp"
 
 
