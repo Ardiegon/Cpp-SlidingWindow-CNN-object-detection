@@ -48,13 +48,16 @@ int ImgSamples::generateSamples(int padding){
     for(int f = 0; f<samplet.get_accuracy(); f++){
         double curr_factor = factors[f];
         bheight =  floor(curr_factor*mheight); bwidth = floor(curr_factor*mwidth);
+        std::cout<< "\nWindow size: " << bwidth << ":" << bheight << std::endl;  
         for(int prop_y = 0; prop_y<=bheight-kheight; prop_y+=padding){
             for(int prop_x = 0; prop_x<=bwidth-kwidth; prop_x+=padding){
                 samples[id_sample] = Sample(samplet, prop_x, prop_y, curr_factor);
+                id_sample++;
             }
         }
+        std::cout << "Sample amount: " <<id_sample << "/" << max_samples<<endl;
     }
-    if (id_sample != max_samples-1){
+    if (id_sample != max_samples){
         throw "Number of samples is other than calculated!";
     }
     return max_samples;
