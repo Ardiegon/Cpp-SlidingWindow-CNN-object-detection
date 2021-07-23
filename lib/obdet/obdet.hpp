@@ -7,13 +7,12 @@
 
 
 using namespace std;
-
-inline double linearSpaced(double, double, double, double);
-
-
 namespace odt{ // object detection
 
 enum class ShowType { RAW, NORMALIZED };
+enum class FactorFunction { LINEAR, SQUARE};
+
+extern double factorSpacing(double, double, double, double, FactorFunction = FactorFunction::SQUARE);
 
 class SampleTemplate{
     // Class that holds parameters for future samples.                               

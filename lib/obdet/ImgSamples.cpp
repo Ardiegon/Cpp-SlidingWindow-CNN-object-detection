@@ -2,12 +2,18 @@
 #include <iostream>
 #include <cmath>
 
+
+double odt::factorSpacing(double start, double end, double steps, double x, FactorFunction f){
+    double result;
+    switch(f){
+        case FactorFunction::LINEAR:        result = ((end - start) / steps)*x + start; break;
+        case FactorFunction::SQUARE:        result = ((end-start)/(steps*steps))*(x*x) + start; break;
+    }
+    return result;
+}
+
 using namespace odt;
 constexpr double max_factor = 10 ;
-
-inline double linearSpaced(double start, double end, double steps, double x){
-    return ((end - start) / steps)*x + start;
-}
 
 ImgSamples::ImgSamples(SampleTemplate& _st): samplet(_st) {
     factors = new double[_st.get_accuracy()];
@@ -21,7 +27,7 @@ void ImgSamples::calculateFactors(){
     double a = static_cast<double>(samplet.get_accuracy());
     double min_factor = max(static_cast<double>(samplet.get_lenx())/static_cast<double>(samplet.get_mImage()->cols),static_cast<double>(samplet.get_leny())/static_cast<double>(samplet.get_mImage()->rows));
     for (int i = 0; i < a; i++){
-        factors[i] = linearSpaced(min_factor, max_factor, a, i);
+        factors[i] = factorSpacing(min_factor, max_factor, a, i);
     }
 }
 
