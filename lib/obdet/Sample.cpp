@@ -20,18 +20,18 @@ cv::Mat Sample::get_Mat(){
 
 cv::Mat Sample::showOnImage(ShowType s){
     cv::Mat bimage;
-    cv::Point pt1;
-    cv::Point pt2;
+    cv::Point pt1, pt2;
+    bimage = mImage->clone();
     switch(s)
     {
         case ShowType::RAW:        
-        cv::resize(*mImage, bimage, cv::Size(), factor, factor, CV_INTER_LINEAR);
+        cv::resize(bimage, bimage, cv::Size(), factor, factor, CV_INTER_LINEAR);
         pt1 = cv::Point(corx, cory);
         pt2 = cv::Point(corx+lenx-1, cory+leny-1);
         cv::rectangle(bimage, pt1, pt2, cv::Scalar(0, 0, 255));
         break;
+        
         case ShowType::NORMALIZED:
-        bimage = *mImage;
         pt1 = cv::Point(static_cast<int>(corx/factor), static_cast<int>(cory/factor));
         pt2 = cv::Point(static_cast<int>(corx/factor+lenx/factor-1), static_cast<int>(cory/factor+leny/factor-1));
         cv::rectangle(bimage, pt1, pt2, cv::Scalar(0, 0, 255));

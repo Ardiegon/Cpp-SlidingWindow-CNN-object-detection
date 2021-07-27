@@ -4,8 +4,6 @@
 #include <iostream>
 #include <opencv2/opencv.hpp>
 
-
-
 using namespace std;
 namespace odt{ // object detection
 
@@ -88,11 +86,11 @@ public:
 
 class TemplateMatch{
     ImgSamples *image;
-    cv::Mat templ;
+    cv::Mat templ, templ_hist;
 public:
     TemplateMatch(ImgSamples*, cv::Mat);
     void normalizeTemplate();
-    double calcHistDifference();
+    double calcHistDifference(int);
     Sample findBestSample();
 };
 

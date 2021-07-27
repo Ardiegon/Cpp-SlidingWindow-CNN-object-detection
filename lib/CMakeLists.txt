@@ -16,5 +16,6 @@ add_library(
 add_library(
     optmg
     optmg/optmg.hpp
-    optmg/OptionManager.cpp
+    optmg/JsonMgr.cpp
+    optmg/OptionMgr.cpp
 )
