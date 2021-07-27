@@ -12,3 +12,9 @@ add_library(
     obdet/ImgSamples.cpp
     obdet/TemplateMatch.cpp
 )
+
+add_library(
+    optmg
+    optmg/optmg.hpp
+    optmg/OptionManager.cpp
+)

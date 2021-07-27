@@ -6,8 +6,8 @@
 double odt::factorSpacing(double start, double end, double steps, double x, FactorFunction f){
     double result;
     switch(f){
-        case FactorFunction::LINEAR:        result = ((end - start) / steps)*x + start; break;
-        case FactorFunction::SQUARE:        result = ((end-start)/(steps*steps))*(x*x) + start; break;
+        case FactorFunction::LINEAR:    result = ((end - start) / steps)*x + start; break;
+        case FactorFunction::SQUARE:    result = ((end-start)/(steps*steps))*(x*x) + start; break;
     }
     return result;
 }

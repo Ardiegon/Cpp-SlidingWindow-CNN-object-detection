@@ -5,7 +5,11 @@
 
 using namespace std;
 
-int main(){
+int main(int argc, char* argv[]){
+    cout<<"Argc: " << argc << endl;
+    for(int i = 0; i<argc; i++){
+        cout << argv[i] << endl;
+    }
     cv::Mat img = cv::imread("../src/lion.jpg", cv::IMREAD_COLOR);
     cout<< (int)img.cols << " " << (int)img.rows << " " << floor(100*(2/3)) << endl;
     odt::SampleTemplate templ(&img, 300, 300 ,6);
