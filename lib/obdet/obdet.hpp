@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <opencv2/opencv.hpp>
+#include <vector>
 
 using namespace std;
 namespace odt{ // object detection
@@ -11,7 +12,7 @@ enum class ShowType { RAW, NORMALIZED };
 enum class FactorFunction { LINEAR, SQUARE};
 
 extern double factorSpacing(double, double, double, double, FactorFunction = FactorFunction::SQUARE);
-
+void showHistogram();
 class SampleTemplate{
     // Class that holds parameters for future samples.                               
 protected:
@@ -44,6 +45,7 @@ public:
     double get_factor(void);
     cv::Mat get_Mat(void);                          // Making Matrix from info
     cv::Mat showOnImage(ShowType = ShowType::NORMALIZED);
+    vector<cv::Mat> makeHistBGR();
 };
 
 class ImgSamples{
@@ -86,7 +88,8 @@ public:
 
 class TemplateMatch{
     ImgSamples *image;
-    cv::Mat templ, templ_hist;
+    cv::Mat templ;
+    vector<cv::Mat> temp_hist;
 public:
     TemplateMatch(ImgSamples*, cv::Mat);
     void normalizeTemplate();

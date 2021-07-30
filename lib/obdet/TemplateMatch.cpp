@@ -21,4 +21,5 @@ double TemplateMatch::calcHistDifference(int id_sample){
     sum all
     Return that sum
     */
+    return 1.0; // xD 
 };
