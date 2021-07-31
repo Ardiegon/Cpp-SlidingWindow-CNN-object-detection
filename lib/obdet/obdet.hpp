@@ -69,6 +69,7 @@ class ImgSamples{
     SampleTemplate samplet;
     double* factors;
     Sample *samples;
+    int nsamples;
 public:
     ImgSamples(SampleTemplate&);
     ~ImgSamples();
@@ -77,6 +78,7 @@ public:
     double* get_factors(void);
     Sample* get_samples(void);
     SampleTemplate get_samplet(void);
+    int get_nsamples();
 };
 
 class ConvLayer{
@@ -93,7 +95,7 @@ class TemplateMatch{
 public:
     TemplateMatch(ImgSamples*, cv::Mat);
     void normalizeTemplate();
-    double calcHistDifference(int);
+    long int calcHistDifference(int);
     Sample findBestSample();
 };
 

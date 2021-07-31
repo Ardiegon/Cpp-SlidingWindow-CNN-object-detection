@@ -11,21 +11,16 @@ int main(int argc, char* argv[]){
     //     cout << argv[i] << endl;
     // }
     cv::Mat img = cv::imread("../src/lion.jpg", cv::IMREAD_COLOR);
-    cout<< (int)img.cols << " " << (int)img.rows << " " << floor(100*(2/3)) << endl;
-    odt::SampleTemplate templ(&img, 100, 100 ,6);
+    cv::Mat img_template = cv::imread("../src/lion.jpg", cv::IMREAD_COLOR);
+    odt::SampleTemplate templ(&img, 300, 300 ,3);
     odt::ImgSamples swindow(templ);
     swindow.calculateFactors();
-    int how_many = swindow.generateSamples(5); 
+    swindow.generateSamples(5);
+    odt::TemplateMatch tm(&swindow, img_template);
     cv::imshow("Lion", img);
-    cv::imshow("Sample219700", swindow.get_samples()[219700].showOnImage());
+    cv::imshow("Template", img_template);
+    cv::imshow("Result", tm.findBestSample().showOnImage());
     cv::imshow("What", swindow.get_samples()[0].makeHistBGR()[0]);  
-    cv::imshow("Lion2", img);
-
-    float sum = 0;
-    for(int i = 0; i< 256; i++){
-    sum += swindow.get_samples()[0].makeHistBGR()[0].at<float>(i);
-    }
-    cout << "Sum: " << sum << endl;
 
     cv::waitKey(0);
     return 0;

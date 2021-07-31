@@ -46,6 +46,7 @@ int ImgSamples::generateSamples(int padding){
         max_samples += static_cast<int>(ceil((bheight-kheight+1)/padding)*ceil((bwidth-kwidth+1)/padding));
     }
     samples = new Sample[max_samples];
+    nsamples = max_samples;
     
     // Make Samples using nested loops (Resized image -> Iter through height -> Iter through width).
     int id_sample = 0;
@@ -77,4 +78,8 @@ Sample* ImgSamples::get_samples(){
 
 SampleTemplate ImgSamples::get_samplet(){
     return samplet;
+}
+
+int ImgSamples::get_nsamples(){
+    return nsamples;
 }

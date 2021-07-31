@@ -45,7 +45,6 @@ vector<cv::Mat> Sample::makeHistBGR(){
     vector<cv::Mat> hist;
     vector<cv::Mat> channels;
     cv::split(get_Mat(), channels);
-    //cout << channels[0].cols << " " << channels[0].rows << endl;
     int histSize = 256;
     float range[] = { 0, 256 };
     const float* histRange[] = { range };
